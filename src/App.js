@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
-
+import MyRightCalendar from './components/Calendar';
+import LeftSection from './components/LeftSection';
 function App() {
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+  const handleLeftDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="left-section">
+        <LeftSection selectedDate={selectedDate} onDateChange={handleLeftDateChange} />
+      </div>
+      <div className="right-section">
+        <MyRightCalendar onDateChange={handleDateChange}/>
+      </div>
     </div>
   );
 }
